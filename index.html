@@ -11,10 +11,13 @@
             background: linear-gradient(to right, #ff9a9e, #fad0c4);
             text-align: center;
             color: #fff;
+            overflow-x: hidden;
         }
 
         .container {
             padding: 40px 20px;
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
@@ -24,8 +27,9 @@
 
         p {
             font-size: 1.3rem;
-            max-width: 600px;
+            max-width: 700px;
             margin: auto;
+            line-height: 1.6;
         }
 
         .gallery {
@@ -69,10 +73,51 @@
         button:hover {
             background: #ff1e3c;
         }
+
+        /* Love Letter Section */
+        .letter {
+            margin-top: 60px;
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .letter h2 {
+            margin-bottom: 15px;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            color: red;
+            font-size: 24px;
+            animation: float 6s linear infinite;
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(-10vh);
+            }
+        }
     </style>
 </head>
 
 <body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
     <h1>Happy Valentine’s Day ❤️</h1>
@@ -85,10 +130,23 @@
 
     <button onclick="showMessage()">Click for a Surprise 💌</button>
 
+    <!-- Photo Gallery -->
     <div class="gallery">
         <img src="images/photo1.jpg" alt="Memory 1">
         <img src="images/photo2.jpg" alt="Memory 2">
         <img src="images/photo3.jpg" alt="Memory 3">
+    </div>
+
+    <!-- Love Letter Section -->
+    <div class="letter">
+        <h2>My Letter to You 💖</h2>
+        <p>
+            You make my world brighter, my days better,
+            and my heart fuller than I ever imagined.
+            I’m grateful for every laugh, every hug,
+            and every moment we share together.
+            Happy Valentine’s Day ❤️
+        </p>
     </div>
 
     <div class="footer">
@@ -100,8 +158,26 @@
 function showMessage() {
     alert("I love you more every single day ❤️");
 }
+
+/* Generate Floating Hearts */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
 </script>
 
 </body>
 </html>
-
